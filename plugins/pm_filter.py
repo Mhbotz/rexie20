@@ -443,7 +443,6 @@ async def cb_handler(client: Client, query: CallbackQuery):
                     ]
                 )
             )
-            await query.answer('Check Out The Chat',)
             await asyncio.sleep(900)
             await msg1.delete()
             await msg.delete()
