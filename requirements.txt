@@ -36,16 +36,9 @@ PyDictionary
 PyPDF2
 prettyconf
 cachetools
-spamwatch
-mapping
-telethon
 yt-dlp
 Heroku3
 speedtest
 pyyaml
 Shazamio
-ffmpeg-python>=0.2.0
 Wikipedia
-geopy>=2.1.0
-py-tgcalls
-ffmpeg
