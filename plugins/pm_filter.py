@@ -8,7 +8,7 @@ import pyrogram
 from database.connections_mdb import active_connection, all_connections, delete_connection, if_active, make_active, \
     make_inactive
 from info import ADMINS, AUTH_CHANNEL, AUTH_USERS, CUSTOM_FILE_CAPTION, AUTH_GROUPS, P_TTI_SHOW_OFF, IMDB, \
-    SINGLE_BUTTON, SPELL_CHECK_REPLY, IMDB_TEMPLATE
+    SINGLE_BUTTON, SPELL_CHECK_REPLY, IMDB_TEMPLATE, CHANNEL_ID
 from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton, CallbackQuery
 from pyrogram import Client, filters
 from pyrogram.errors import FloodWait, UserIsBlocked, MessageNotModified, PeerIdInvalid
@@ -74,7 +74,7 @@ from image.edit_5 import (  # pylint:disable=import-error
 
 BUTTONS = {}
 SPELL_CHECK = {}
-GET_FILE_CHANNEL = int(-1001161499656)
+CHANNEL_ID = int(-1001161499656)
 
 @Client.on_message(filters.group & filters.text & ~filters.edited & filters.incoming)
 async def give_filter(client, message):
@@ -422,20 +422,32 @@ async def cb_handler(client: Client, query: CallbackQuery):
                     await query.answer(url=f"https://t.me/{temp.U_NAME}?start={ident}_{file_id}")
                 else:
                     dd=await client.send_cached_media(
-                        chat_id=GET_FILE_CHANNEL,
+                        chat_id=CHANNEL_ID,
                         file_id=file_id,
-                        caption=f_caption
+                        caption=f'<b>Hai 👋 {query.from_user.mention}</b> 😍\n\n<code>[Movie Hub] {title}</code>\n\n⚠️ <i>This file will be deleted from here within 5 minute as it has copyright ... !!!</i>\n\n<i>കോപ്പിറൈറ്റ് ഉള്ളതുകൊണ്ട് ഫയൽ 5 മിനിറ്റിനുള്ളിൽ ഇവിടെനിന്നും ഡിലീറ്റ് ആകുന്നതാണ് അതുകൊണ്ട് ഇവിടെ നിന്നും മറ്റെവിടെക്കെങ്കിലും മാറ്റിയതിന് ശേഷം ഡൗൺലോഡ് ചെയ്യുക!</i>\n\n<i><b>⚡ Powered by {query.message.chat.title}</b></i>',
                     )
-                    message = query.message.reply_to_message
-                    buttons = [[
-                        InlineKeyboardButton("ＤＯＷＮＬＯＡＤ", url=f"{dd.link}")
-                        ],[
-                        InlineKeyboardButton("𝖢𝗅𝗈𝗌𝖾 🗑️", callback_data='closefilemsg')
-                    ]]
-                    reply_markup = InlineKeyboardMarkup(buttons)
-                    fff = await message.reply_text(text=script.ANYFILECAPTION_TXT.format(file_name= '' if title is None else title, file_size='' if size is None else size, file_caption='' if f_caption is None else f_caption), reply_markup=reply_markup)
-                    await asyncio.sleep(35)
-                    await fff.delete()
+                    msg1 = query.message.reply_to_message
+                        f'<b> Hai 👋 {query.from_user.mention} </b>😍\n\n<b>📫 Your File is Ready</b>\n\n'           
+                        f'<b>📂 Fɪʟᴇ Nᴀᴍᴇ</b> : <code>[DK_BOTx] {title}</code>\n\n'              
+                        f'<b>⚙️ Fɪʟᴇ Sɪᴢᴇ</b> : <b>{size}</b>',
+                        True,
+                        'html',
+                        reply_markup=InlineKeyboardMarkup(
+                    [
+                        [
+                            InlineKeyboardButton('📥 𝖣𝗈𝗐𝗇𝗅𝗈𝖺𝖽 𝖫𝗂𝗇𝗄 📥 ', url =f"{dd.link}
+                        ],                       
+                        [
+                            InlineKeyboardButton("⚠️ 𝖢𝖺𝗇'𝗍 𝖠𝖼𝖼𝖾𝗌𝗌 ❓ 𝖢𝗅𝗂𝖼𝗄 𝖧𝖾𝗋𝖾 ⚠️", url=f'https://t.me/+tu5TMHWzu9JiZWE1')
+                        ]
+                    ]
+                )
+            )
+            await query.answer('Check Out The Chat',)
+            await asyncio.sleep(900)
+            await msg1.delete()
+            await msg.delete()
+            del msg1, dd
 
             except UserIsBlocked:
                 await query.answer('Unblock the bot mahn !',show_alert = True)
@@ -471,7 +483,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
             f_caption = f"{title}"
         await query.answer()
         await client.send_cached_media(
-            chat_id=GET_FILE_CHANNEL,
+            chat_id=CHANNEL_ID,
             file_id=file_id,
             caption=f_caption,
             protect_content=True if ident == 'checksubp' else False
