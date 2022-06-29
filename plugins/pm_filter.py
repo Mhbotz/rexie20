@@ -443,13 +443,13 @@ async def cb_handler(client: Client, query: CallbackQuery):
                     ]
                 )
             )
-        else:
             await query.answer('📥𝔻𝕆𝕎ℕ𝕃𝕆𝔸𝔻📥',)
             await asyncio.sleep(120)
             await msg1.delete()
             await msg.delete()           
             del msg1, msg
-
+        except Exception as e:
+            logger.exception(e, exc_info=True)
 
             except UserIsBlocked:
                 await query.answer('Unblock the bot mahn !',show_alert = True)
