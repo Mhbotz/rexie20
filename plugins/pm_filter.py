@@ -37,7 +37,7 @@ from image.edit_2 import (  # pylint:disable=import-error
     circle_with_bg,
     circle_without_bg,
     sticker,
-    edge_curved,
+    edge_curved, 
     contrast,
     sepia_mode,
     pencil,
@@ -443,7 +443,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
                             ]
                         )
                    )
-                   await query.answer('Check Out The Chat',)
+                   await query.answer("Check Out The Chat", show_alert=True)
                    await asyncio.sleep(300)
                    await msg1.delete()
                    await msg.delete()
