@@ -443,7 +443,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
                     ]
                 )
             )
-       expect:
+        else:
             await query.answer('📥𝔻𝕆𝕎ℕ𝕃𝕆𝔸𝔻📥',)
             await asyncio.sleep(120)
             await msg1.delete()
