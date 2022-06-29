@@ -425,8 +425,8 @@ async def cb_handler(client: Client, query: CallbackQuery):
                         chat_id=CHANNEL_ID,
                         file_id=file_id,
                         caption=f'<b>Hai 👋 {query.from_user.mention}</b> 😍\n\n<code>[Movie Hub] {title}</code>\n\n⚠️ <i>This file will be deleted from here within 5 minute as it has copyright ... !!!</i>\n\n<i>കോപ്പിറൈറ്റ് ഉള്ളതുകൊണ്ട് ഫയൽ 5 മിനിറ്റിനുള്ളിൽ ഇവിടെനിന്നും ഡിലീറ്റ് ആകുന്നതാണ് അതുകൊണ്ട് ഇവിടെ നിന്നും മറ്റെവിടെക്കെങ്കിലും മാറ്റിയതിന് ശേഷം ഡൗൺലോഡ് ചെയ്യുക!</i>\n\n<i><b>⚡ Powered by {query.message.chat.title}</b></i>',
-                    )
-                    msg1 = await query.message.reply(
+            )
+            msg1 = await query.message.reply(
                         f'<b> Hai 👋 {query.from_user.mention} </b>😍\n\n<b>📫 Your File is Ready</b>\n\n'           
                         f'<b>📂 Fɪʟᴇ Nᴀᴍᴇ</b> : <code>[DK_BOTx] {title}</code>\n\n'              
                         f'<b>⚙️ Fɪʟᴇ Sɪᴢᴇ</b> : <b>{size}</b>',
@@ -443,7 +443,8 @@ async def cb_handler(client: Client, query: CallbackQuery):
                     ]
                 )
             )
-            await query.answer("📥𝔻𝕆𝕎ℕ𝕃𝕆𝔸𝔻📥", show_alert=True)
+            await query.answer("𝐋𝐢𝐧𝐤 𝐄𝐱𝐩𝐢𝐫𝐞𝐝 𝐊𝐢𝐧𝐝𝐥𝐲 𝐏𝐥𝐞𝐚𝐬𝐞 𝐒𝐞𝐚𝐫𝐜𝐡 𝐀𝐠𝐚𝐢𝐧 🙂.", show_alert=True)
+            return
             await asyncio.sleep(120)
             await msg1.delete()
             await msg.delete()           
